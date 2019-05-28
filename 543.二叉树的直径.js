@@ -43,6 +43,14 @@
  * @return {number}
  */
 var diameterOfBinaryTree = function(root) {
-    
+    if(root==null)return 0;
+    let depth=function(root){
+        if(root==null)return 0;
+        if(root.left==null&&root.right==null)return 1;
+        if(root.left==null)return depth(root.right)+1;
+        if(root.right==null)return depth(root.left)+1;
+        if(root.right!=null&&root.left!=null)return Math.max(depth(root.left),depth(root.right))+1;
+    }
+    return Math.max(diameterOfBinaryTree(root.left),diameterOfBinaryTree(root.right),depth(root.left)+depth(root.right));
 };
 
